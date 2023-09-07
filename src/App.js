@@ -1,24 +1,39 @@
 import logo from './logo.svg';
 import './App.css';
 
+import 'rsuite/dist/rsuite.min.css';
+import 'rsuite/dist/rsuite-no-reset.min.css';
+import {Container, CustomProvider, Placeholder} from "rsuite";
+import React, { useState } from 'react';
 function App() {
+  const [loading, setLoading ] = useState(true)
+
+  React.useEffect(()=>{
+setTimeout(()=>{
+  setLoading(false)
+},
+
+200)
+
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CustomProvider theme='dark'>
+    <div className="App" style={{baclkgroundColor:"#041621", fontFamily:"serif"}}>
+      <Container>
+        {loading? 
+        <Placeholder active rows={2} graph="square"></Placeholder>
+        :
+          <Container style={{padding:"30px", marginTop:"200px", margin:"50px auto"}}>
+            <h1>Welcome To Midgeotech Company</h1>
+            <br/>
+            <br/>
+
+              <small>Site is ongoing maintenance</small>
+          </Container>
+}
+      </Container>
+      
+    </div></CustomProvider>
   );
 }
 
